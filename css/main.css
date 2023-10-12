@@ -1,0 +1,393 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 425px) {
+  * {
+    font-family: system-ui;
+  }
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.desktop-only {
+  display: none;
+}
+
+strong {
+  position: relative;
+}
+strong i {
+  position: absolute;
+  top: -3px;
+  left: -16px;
+}
+
+#wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 70px auto 150px;
+  grid-template-areas: "nav" "main" "footer";
+}
+
+#nav {
+  grid-area: nav;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  background-color: #429B2F;
+  color: #ECFCEA;
+  position: relative;
+}
+#nav.mobile-dropdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+#nav #mobile-dropdown-btn {
+  z-index: 1;
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  font-size: 40px;
+}
+
+#aside {
+  z-index: 1;
+  width: 100%;
+  height: 50vh;
+  background-color: #ECFCEA;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  padding: 50px;
+  border-bottom: 5px solid #429B2F;
+  border-radius: 0 0 15px 15px;
+  display: none;
+}
+#aside .aside-area-sort {
+  grid-area: sort;
+}
+#aside .aside-area-category {
+  grid-area: category;
+}
+#aside .aside-area-search {
+  grid-area: search;
+}
+#aside #filter-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "sort category" "search search";
+  width: 100%;
+}
+#aside #filter-icon {
+  cursor: pointer;
+  color: #429B2F;
+  position: fixed;
+  top: 6px;
+  left: 13px;
+  font-size: 40px;
+}
+#aside.active {
+  display: block;
+}
+
+#main-container {
+  grid-area: main;
+  width: 100%;
+  min-height: 70vh;
+}
+#main-container #status-message {
+  display: none;
+  background: #fcfe0d;
+  color: #3c3c02;
+  border-radius: 5px;
+  padding: 5px 8px;
+}
+#main-container #status-message.active {
+  display: block;
+}
+#main-container #result-content {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 15px 5px;
+  padding: 20px 10px;
+}
+#main-container #result-content .location-card {
+  border: 2px solid black;
+  overflow: hidden;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 85px auto;
+  width: 190px;
+}
+#main-container #result-content .location-card div {
+  overflow: hidden;
+}
+#main-container #result-content .location-card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#main-container #result-content .location-card .location-card-details {
+  padding: 5px 8px;
+  font-size: 10px;
+  display: grid;
+  gap: 2px;
+  grid-template-rows: auto 1fr 1fr;
+  grid-template-columns: 65% 35%;
+  grid-template-areas: "title title" "suburb rating" "price showmore";
+}
+#main-container #result-content .location-card .location-card-details .card-title {
+  grid-area: title;
+  font-size: 12px;
+}
+#main-container #result-content .location-card .location-card-details .card-location {
+  grid-area: suburb;
+  color: gray;
+}
+#main-container #result-content .location-card .location-card-details .card-price {
+  grid-area: price;
+}
+#main-container #result-content .location-card .location-card-details .card-rating {
+  grid-area: rating;
+  text-align: right;
+}
+#main-container #result-content .location-card .location-card-details .card-showmore-div {
+  grid-area: showmore;
+  text-align: right;
+}
+#main-container #result-content .location-card .location-card-details .card-showmore-div .showmore-button {
+  font-size: 8px;
+  padding: 3px 5px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#footer {
+  grid-area: footer;
+  height: 150px;
+  width: 100%;
+  padding: 30px 80px;
+  background-color: lightgray;
+  text-align: center;
+}
+
+#modal-wrapper {
+  display: none;
+  flex-direction: row;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+#modal-wrapper.active {
+  display: flex;
+}
+#modal-wrapper #modal {
+  overflow: visible;
+  height: 90%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background-color: #ECFCEA;
+  color: black;
+  border-radius: 15px 15px 0 0;
+  border-top: 4px solid #429B2F;
+  padding: 30px;
+}
+#modal-wrapper #modal #modal-result {
+  overflow: visible;
+}
+#modal-wrapper #modal #modal-result h2 {
+  font-size: 18px;
+}
+#modal-wrapper #modal #modal-result .modal-location {
+  font-style: italic;
+  color: gray;
+}
+#modal-wrapper #modal #modal-result p {
+  font-size: 12px;
+}
+#modal-wrapper #modal #modal-result .modal-price-rating {
+  display: flex;
+}
+#modal-wrapper #modal #modal-result .modal-price-rating p {
+  width: 50%;
+}
+#modal-wrapper #modal #modal-result #categories-wrapper {
+  z-index: 2;
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  display: flex;
+  gap: 15px;
+}
+#modal-wrapper #modal #modal-result #categories-wrapper span {
+  background: #4BB434;
+  border: 2px solid #ECFCEA;
+  border-radius: 15px;
+  padding: 5px 10px;
+  color: #ECFCEA;
+  font-size: 14px;
+  font-style: italic;
+}
+#modal-wrapper #modal-close {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 40px;
+  cursor: pointer;
+}
+#modal-wrapper #map {
+  color: black;
+}
+#modal-wrapper .map-marker {
+  color: #429B2F;
+  font-size: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  #wrapper {
+    grid-template-rows: 80px auto 150px;
+    grid-template-areas: "nav" "main" "footer";
+  }
+  #nav {
+    height: 80px;
+  }
+  #nav.mobile-dropdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  #nav #mobile-dropdown-btn {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    font-size: 48px;
+  }
+  #aside {
+    top: 80px;
+  }
+  #main-container #result-content {
+    gap: 25px 15px;
+    padding: 20px 10px;
+  }
+  #main-container #result-content .location-card {
+    grid-template-rows: 120px auto;
+    width: 280px;
+  }
+  #main-container #result-content .location-card .location-card-details {
+    font-size: 14px;
+    gap: 5px;
+  }
+  #main-container #result-content .location-card .location-card-details .card-title {
+    font-size: 16px;
+  }
+  #main-container #result-content .location-card .location-card-details .card-showmore-div .showmore-button {
+    font-size: 14px;
+    padding: px 8px;
+  }
+  #modal-wrapper #map {
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .mobile-tablet-only {
+    display: none;
+  }
+  .desktop-only {
+    display: initial;
+  }
+  #wrapper {
+    grid-template-columns: 70px auto;
+    grid-template-rows: 80px auto 150px;
+    grid-template-areas: "aside nav" "aside main" "footer footer";
+  }
+  nav #mobile-dropdown-btn {
+    display: none;
+  }
+  #aside {
+    grid-area: aside;
+    position: static;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+    display: block;
+  }
+  #aside #filter-content {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 69px;
+    width: 301px;
+    height: 99%;
+    padding: 15px;
+    background-color: #ECFCEA;
+    border-right: 5px solid #429B2F;
+    border-radius: 0 15px 15px 0;
+  }
+  #aside #filter-content.active {
+    display: block;
+  }
+  #aside #filter-content form {
+    margin-bottom: 10px;
+  }
+  #modal-wrapper {
+    padding-left: 70px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  #modal-wrapper.active {
+    display: flex;
+  }
+  #modal-wrapper #modal {
+    width: 80%;
+    height: 80%;
+    border-radius: 15px;
+    border: 4px solid #429B2F;
+    text-align: left;
+  }
+  #modal-wrapper #modal #modal-result h2, #modal-wrapper #modal #modal-result .modal-location, #modal-wrapper #modal #modal-result .modal-price-rating {
+    text-align: center;
+  }
+  #modal-wrapper #modal #modal-result h2 {
+    font-size: 24px;
+  }
+  #modal-wrapper #modal #modal-result p {
+    font-size: 14px;
+  }
+  #modal-wrapper #modal-close {
+    right: 5px;
+  }
+  #modal-wrapper #map {
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1400px) {
+  #modal-wrapper #map {
+    height: 100%;
+  }
+}

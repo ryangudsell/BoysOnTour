@@ -1,0 +1,68 @@
+@media screen and (min-width:768px) {
+
+#wrapper {
+    grid-template-rows: 80px auto 150px;
+    grid-template-areas: 
+    "nav"
+    "main"
+    "footer";
+}
+
+#nav {
+    &.mobile-dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+    }
+    height: 80px;
+
+    #mobile-dropdown-btn {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        font-size: 48px;
+    }
+}
+
+#aside {
+    top: 80px;
+}
+
+#main-container {
+    #result-content {
+        gap: 25px 15px;
+        padding: 20px 10px;
+
+        .location-card {
+            grid-template-rows: 120px auto;
+            width: 280px;
+
+            .location-card-details {
+                font-size: 14px;
+                gap: 5px;
+                
+                .card-title {
+                    font-size: 16px;
+                }
+
+                .card-showmore-div {
+                    .showmore-button {
+                        font-size: 14px;
+                        padding: px 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#modal-wrapper {
+    
+    #map {
+        margin: 0 auto;
+    }
+}
+
+}

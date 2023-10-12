@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Initialise AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- MapBox -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>Boys On Tour One Page Website</title>
+</head>
+<body>
+    <div id="wrapper">
+        <nav id="nav">
+            <div id="mobile-dropdown-btn"><i id="hamburger" class="bi bi-list"></i></div>
+            <img src="img/Boys-On-Tour-Logo.png" alt="Logo for Boys On Tour">
+        </nav>
+        <aside id="aside">
+            <h2 class="filter-header mobile-tablet-only">Filter By:</h2>
+            <h2 class="filter-header desktop-only"><i id="filter-icon" class="bi bi-funnel"></i></h2>
+            <div id="filter-content" class="aside-area-sort">
+                <form id="sort-form">
+                <h3><i class="bi bi-filter-left"></i> Sort By:</h3>
+                <div>
+                    <input type="radio" name="sort" value="id" checked>
+                    <label for="id">ID (Default)</label>
+                </div>
+                <div>
+                    <input type="radio" name="sort" value="name">
+                    <label for="name">Name (A to Z)</label>
+                </div>
+                <div>
+                    <input type="radio" name="sort" value="rating">
+                    <label for="rating">Top Rated</label>
+                </div>
+                <div>
+                    <input type="radio" name="sort" value="price">
+                    <label for="price">Lowest Price</label>
+                </div>
+            </form>
+            <form id="category-form" class="aside-area-category">
+                <h3><i class="bi bi-tag"></i> Category:</h3>
+                <div>
+                    <input type="checkbox" name="category" value="North Island">
+                    <label for="north-island">North Island</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="South Island">
+                    <label for="south-island">South Island</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Accommodation">
+                    <label for="accommodation">Accommodation</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Activity">
+                    <label for="activity">Activity</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Landmark">
+                    <label for="landmark">Landmark</label>
+                </div>
+            </form>
+            <form id="search-form" class="aside-area-search">
+                <h3>Other:</h3>
+                <input id="search-input" placeholder="Search..." type="text">
+                <button id="submit-search" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+            </div>
+        </aside>
+        <main id="main-container">
+            <p id="status-message"></p>
+            <div id="result-content"></div>
+        </main>
+        <footer id="footer">
+            <p>Copyright © 2023 Boys On Tour,<br> Ryan Gudsell.</p>
+        </footer>
+    </div>
+
+    <div id="modal-wrapper">
+        <div id="modal">
+            <i id="modal-close" class="bi bi-x"></i>
+            <div id="modal-result"></div>
+            <div id='map' style='margin-top: 30px; width: 100%; height: 300px;'></div>
+        </div>
+    </div>
+
+    <!-- end of html / Javascript link -->
+    <!-- Imports -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+
+    <!-- Custom Js -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
