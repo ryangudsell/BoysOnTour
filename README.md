@@ -6,8 +6,6 @@ Boys On Tour is a passion project I brought to life for my friends, the aim was 
 - MapBox API is used to create a map and real-life location data for each entry.
 - Animate On Scroll is used to create a fade-in effect when scrolling down the page, making the load times seamless and appearing as if the entries are appearing out of thin air and not popping in.
 - Bootstrap Icons was used to implement icons for accessibility and recognition in terms of nav bars, buttons, and other icons.
-## Mockups and Screenshots
-
 ## Project Links
 - GitHub Link: https://github.com/ryangudsell/BoysOnTour
 - Vercel Link: https://boys-on-tour.vercel.app/
